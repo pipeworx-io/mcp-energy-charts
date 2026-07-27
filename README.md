@@ -2,7 +2,7 @@
 
 Energy-Charts (Fraunhofer ISE) MCP — European electricity generation, prices, and capacity.
 
-Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 693+ live data sources.
+Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 1361+ live data sources.
 
 ## Tools
 
@@ -23,7 +23,7 @@ Add to your MCP client (Claude Desktop, Cursor, Windsurf, etc.):
 }
 ```
 
-Or connect to the full Pipeworx gateway for access to all 693+ data sources:
+Or connect to the full Pipeworx gateway for access to all 1361+ data sources:
 
 ```json
 {

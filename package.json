@@ -1,6 +1,6 @@
 {
   "name": "@pipeworx/mcp-energy-charts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Energy-Charts (Fraunhofer ISE) MCP — European electricity generation, prices, and capacity.",
   "type": "module",
   "main": "src/index.ts",
