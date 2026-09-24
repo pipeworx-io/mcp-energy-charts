@@ -2,7 +2,7 @@
 
 Energy-Charts (Fraunhofer ISE) MCP — European electricity generation, prices, and capacity.
 
-Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 1476+ live data sources.
+Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 1679+ live data sources.
 
 ## Tools
 
@@ -13,7 +13,7 @@ Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents 
 | `electricity_price` | Day-ahead spot electricity prices for a bidding zone over a date range. Returns {unix_seconds, price, unit}; the price array is timestamp-aligned to unix_seconds. Prices in EUR/MWh. |
 | `total_power` | Total electricity generation / load for a country over a date range. Returns {unix_seconds, production_types:[{name, data}]}; data arrays are timestamp-aligned to unix_seconds. Power in MW. |
 | `installed_power` | Installed generation capacity by production type for a country, as an annual or monthly series. Returns {time:["2002",...], production_types:[{name, data}]}; data arrays are aligned to the time array. Capacity in GW. |
-| `renewable_share` | Renewable share of a country's electricity load — what share / percent of load is currently being covered by renewables (wind, solar, hydro combined). Keyless, no API key. Answers "what share of Germany's electricity load is renewable right now". Returns a list of series [{name, data, ...}] where each data point is a percent of load; values are timestamp-ordered, most recent last (read the last value for the current share). Dates optional (defaults to the last 7 days). |
+| `renewable_share` | Renewable share of a country's electricity LOAD, as a percent — how much of demand wind, solar, hydro and biomass are covering, now or over a past date range. Answers "what share of Germany's electricity is renewable right now", "how renewable was France's grid in July", "which days last month did renewables cover most of the load". Accepts a country NAME ("Germany") or 2-letter code, or "eu"/"all" for the EU aggregate. Returns the latest MEASURED reading with its timestamp, a min/avg/max summary for the window, and a per-day breakdown; 15-minute readings are included for windows of 3 days or less. Values are percent OF LOAD and legitimately exceed 100 when a country generates more renewable power than it consumes and exports the surplus. Measured settled data, not a forecast. Keyless. Source: Fraunhofer ISE energy-charts. |
 
 ## Quick Start
 
@@ -59,9 +59,45 @@ directly, instead of just this one's:
 }
 ```
 
-Both URLs reach the same gateway and the same 1476+ data sources. The
+Both URLs reach the same gateway and the same 1679+ data sources. The
 only difference is which pack's tools are listed **directly**; `ask_pipeworx`
 reaches all of them from either one.
+
+## No MCP client? Call it over HTTP
+
+```bash
+curl -X POST https://gateway.pipeworx.io/v1/tools/generation_mix \
+  -H 'Content-Type: application/json' \
+  -d '{"country":"Germany"}'
+```
+
+No account needed for the first calls. Inspect any tool: `GET https://gateway.pipeworx.io/v1/tools/generation_mix`. Find one: `POST https://gateway.pipeworx.io/v1/tools/search_packs` with `{"query":"..."}`.
+
+## Standalone (no gateway account)
+
+This package also runs as a local stdio MCP server — no Pipeworx account, no
+gateway round-trip:
+
+```json
+{
+  "mcpServers": {
+    "energy-charts": {
+      "command": "npx",
+      "args": ["-y", "@pipeworx/mcp-energy-charts"]
+    }
+  }
+}
+```
+
+Or run it directly to confirm it starts:
+
+```bash
+npx -y @pipeworx/mcp-energy-charts
+```
+
+It speaks MCP over stdin/stdout and answers `initialize`/`tools/list`/`tools/call`
+for **only** this pack's tools — none of the shared meta-tools the gateway
+connection above adds. Same source, same tools, no ask_pipeworx routing.
 
 ## Using with ask_pipeworx
 
@@ -82,13 +118,3 @@ The gateway picks the right tool and fills the arguments automatically.
 ## License
 
 MIT
-
-## No MCP client? Call it over HTTP
-
-```bash
-curl -X POST https://gateway.pipeworx.io/v1/tools/generation_mix \
-  -H 'Content-Type: application/json' \
-  -d '{"country":"Germany"}'
-```
-
-No account needed for the first calls. Inspect any tool: `GET https://gateway.pipeworx.io/v1/tools/generation_mix`. Find one: `POST https://gateway.pipeworx.io/v1/tools/search_packs` with `{"query":"..."}`.
