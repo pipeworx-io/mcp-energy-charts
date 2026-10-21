@@ -1,7 +1,7 @@
 {
   "name": "@pipeworx/mcp-energy-charts",
-  "version": "0.1.3",
-  "description": "Energy-Charts (Fraunhofer ISE) MCP — European electricity generation, prices, and capacity.",
+  "version": "0.1.4",
+  "description": "Energy-Charts (Fraunhofer ISE) MCP — European electricity generation, prices, and capacity. Keyless public API at https://api.energy-charts.info.",
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -26,7 +26,7 @@
     "@cloudflare/workers-types": "^4.20260405.1"
   },
   "pipeworx": {
-    "sourceHash": "v1-7782ca14ec91954a8356878c2de10f561043e711c5187e027d5fa91572162768",
-    "sourceCommit": "4fa4c64448be06f4a2ee4cee19f756f3558a7cad"
+    "sourceHash": "v1-7e5874efb302c5fee12475ae57fe8824460316a847271f5bba8e704864d7a5e5",
+    "sourceCommit": "5749f83c0ea115fab4c0c0ef04b66b05f2507d67"
   }
 }
