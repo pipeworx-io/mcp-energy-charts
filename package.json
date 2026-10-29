@@ -1,12 +1,20 @@
 {
   "name": "@pipeworx/mcp-energy-charts",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Energy-Charts (Fraunhofer ISE) MCP — European electricity generation, prices, and capacity. Keyless public API at https://api.energy-charts.info.",
   "type": "module",
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./tools.json": "./tools.json",
+    "./package.json": "./package.json"
+  },
   "bin": {
     "mcp-energy-charts": "bin/cli.js"
+  },
+  "files": ["bin/", "lib/", "tools.json", "server.json"],
+  "engines": {
+    "node": ">=18"
   },
   "keywords": ["mcp", "mcp-server", "model-context-protocol", "pipeworx", "energy-charts"],
   "license": "MIT",
@@ -14,19 +22,12 @@
     "type": "git",
     "url": "git+https://github.com/pipeworx-io/mcp-energy-charts.git"
   },
-  "scripts": {
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.30.0",
-    "tsx": "^4.19.0"
-  },
-  "devDependencies": {
-    "typescript": "^5.9.3",
-    "@cloudflare/workers-types": "^4.20260405.1"
-  },
+  "mcpName": "io.github.pipeworx-io/energy-charts",
   "pipeworx": {
-    "sourceHash": "v1-9ed7a38f5a0b03850530a25a45bbbda174b22455fd7532a7287c4f643e690d1e",
-    "sourceCommit": "722087a9bda73f85942e8f6bbfd598544cb0d490"
+    "mode": "gateway",
+    "slug": "energy-charts",
+    "gatewaySlug": "energy-charts",
+    "sourceHash": "v1-8e568b8a2eadfb009b9c724c9a2f3e3c078c3a59bfdbc451269673b60faa2456",
+    "sourceCommit": "bb047243cf27f32453103de186b8e6a8b6a1ce79"
   }
 }
