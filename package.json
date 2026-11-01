@@ -1,6 +1,6 @@
 {
   "name": "@pipeworx/mcp-energy-charts",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Energy-Charts (Fraunhofer ISE) MCP — European electricity generation, prices, and capacity. Keyless public API at https://api.energy-charts.info.",
   "type": "module",
   "main": "lib/index.js",
@@ -27,7 +27,7 @@
     "mode": "gateway",
     "slug": "energy-charts",
     "gatewaySlug": "energy-charts",
-    "sourceHash": "v1-8e568b8a2eadfb009b9c724c9a2f3e3c078c3a59bfdbc451269673b60faa2456",
-    "sourceCommit": "bb047243cf27f32453103de186b8e6a8b6a1ce79"
+    "sourceHash": "v1-9c29786ac816b4c35e870a98b254feb9dd3869a7b110f48b5be337d87e631b1e",
+    "sourceCommit": "d35e32c1ffe988e24d391dedb35666387fd2b3d6"
   }
 }
